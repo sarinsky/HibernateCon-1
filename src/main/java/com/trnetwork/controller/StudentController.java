@@ -18,7 +18,7 @@ import com.trnetwork.model.Student;
 import com.trnetwork.ws.StudentService;
 
 @RestController
-@RequestMapping(path = "api/student")
+@RequestMapping("api/student")
 public class StudentController {
 /*Alll the resources for our api */
 	

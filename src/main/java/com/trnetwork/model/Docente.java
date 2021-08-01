@@ -6,61 +6,63 @@ import java.time.Period;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
-import org.springframework.data.annotation.Transient;
 @Entity
 @Table
-public class Student {
+public class Docente {
 	
-	@Id
+	@Id 
 	@SequenceGenerator(
-			name = "student_sequence",
-			sequenceName ="student_sequence",
-			allocationSize = 1 )
+		name="docent_sequence",
+		sequenceName = "docent_sequence",
+		allocationSize = 1)
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
-			generator = "student_sequence")
-	private Long id;
-	/*Is everything that we have need here */
+			generator = "docent_sequence")
+	
+	private Long Id;
 	private String name;
 	private String email;
-	private LocalDate dof;
+	private LocalDate dob;
+	
 	@Transient
 	private Integer age;
 	
-	public Student() {
+
+	
+	public Docente() {
 		
 	}
 
-	public Student(Long id, 
+	public Docente(Long id, 
 			String name, 
-			String email,
-			LocalDate dof
-		) {
-		
-		this.id = id;
+			String email, 
+			LocalDate dob) {
+		Id = id;
 		this.name = name;
 		this.email = email;
-		this.dof = dof;
+		this.dob = dob;
 
 	}
 
-	public Student(String name, String email, LocalDate dof) {
-		
+	public Docente(String name, String email, LocalDate dob) {
+
 		this.name = name;
 		this.email = email;
-		this.dof = dof;
+		this.dob = dob;
+
 	}
 
 	public Long getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		Id = id;
 	}
 
 	public String getName() {
@@ -79,17 +81,16 @@ public class Student {
 		this.email = email;
 	}
 
-	public LocalDate getDof() {
-		return dof;
+	public LocalDate getDob() {
+		return dob;
 	}
 
-	public void setDof(LocalDate dof) {
-		this.dof = dof;
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
 	}
 
 	public Integer getAge() {
-		
-		return Period.between(this.dof, LocalDate.now()).getYears();
+		return Period.between(this.dob, LocalDate.now()).getYears();
 	}
 
 	public void setAge(Integer age) {
@@ -98,13 +99,15 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student ["
-				+ "id=" + id + 
-				", name='" + name + '\''+
-				", email='" + email +'\''+ 
-				", dof=" + dof + "]";
+		return "Docente [Id=" + Id + 
+				", name=" + name + 
+				", email=" + email + 
+				", dob=" + dob +  "]";
 	}
-		
+	
+	
+	
+	
 	
 	
 }
