@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table
+@Table(name="Docente") 
 public class Docente {
 	
 	@Id 
@@ -42,7 +42,7 @@ public class Docente {
 			String name, 
 			String email, 
 			LocalDate dob) {
-		Id = id;
+		this.Id = id;
 		this.name = name;
 		this.email = email;
 		this.dob = dob;
@@ -89,19 +89,19 @@ public class Docente {
 		this.dob = dob;
 	}
 
-	public Integer getAge() {
+	/*public Integer getAge() {
 		return Period.between(this.dob, LocalDate.now()).getYears();
 	}
 
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-
+*/
 	@Override
 	public String toString() {
 		return "Docente [Id=" + Id + 
-				", name=" + name + 
-				", email=" + email + 
+				", name='" + name + '\''+
+				", email='" + email + '\''+
 				", dob=" + dob +  "]";
 	}
 	

@@ -39,6 +39,7 @@ public class DocenteController {
 		docenteService.deleteDocente(docenteId);
 	}
 	@PutMapping(path = "{docenteId}")
+	/*http://localhost:8080/api/docente/1?name=SARAHI*/
 	public void updateDocente(
 			@PathVariable("docenteId") Long docenteId,
 			@RequestParam(required=false) String name,

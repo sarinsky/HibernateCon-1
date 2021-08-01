@@ -1,5 +1,6 @@
 package com.trnetwork.ws;
 
+import java.nio.charset.IllegalCharsetNameException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,13 +45,20 @@ public class DocenteService {
 		docenteRepository.deleteById(docenteId);;
 	}
 	
-	@Transactional
+	@Transactional	
 	public void updateDocente(Long docenteId, String name, String email) {
 		Docente docente = docenteRepository.findById(docenteId).orElseThrow(()->new IllegalStateException(
 				"DOCENTE WITH THIS ID: "+docenteId+"doesn't exist"));
 		if (name!= null && name.length()>0 && !Objects.equals(docente.getName(), name)) {
 			docente.setName(name);
 		}
+		if (email != null && email.length()>0 && Objects.equals(docente.getEmail(), email)) {
+			Optional<Docente> docenteOptional =docenteRepository.findDocenteByEmail(email);
+			if (docenteOptional.isPresent()) {
+				throw new IllegalStateException("EMAIL TAKEN ");
+			}
+		}
+		
 	}
 
 }

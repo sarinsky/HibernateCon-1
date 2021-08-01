@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import org.springframework.data.annotation.Transient;
 @Entity
-@Table
+@Table(name = "Student")
 public class Student {
 	
 	@Id

@@ -11,7 +11,7 @@ import com.trnetwork.model.Docente;
 @Repository
 public interface DocenteRepository 
 	extends JpaRepository<Docente, Long> {
-	@Query("Select d from Docente d where d.email=?1")
+	//@Query("Select d from Docente d where d.email=?1")
 	Optional<Docente> findDocenteByEmail(String email);
 
 }
