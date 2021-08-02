@@ -3,10 +3,14 @@ package com.trnetwork.model;
 import java.time.LocalDate;
 import java.time.Period;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,15 +29,43 @@ public class Student {
 			generator = "student_sequence")
 	private Long id;
 	/*Is everything that we have need here */
+	@Column(
+			name = "name",
+			nullable = false,
+			length = 255)
 	private String name;
+	@Column(
+			name="email",
+			nullable = false,
+			columnDefinition ="String",
+			unique = true)
 	private String email;
 	private LocalDate dof;
+	
+	//@OneToOne
+	//@JoinColumn(name="Rol", referencedColumnName = "id")
+	private Integer rol;
 	@Transient
 	private Integer age;
 	
 	public Student() {
 		
 	}
+
+	
+	public Student(String name, 
+			String email, 
+			LocalDate dof, 
+			Integer rol, 
+			Integer age) {
+
+		this.name = name;
+		this.email = email;
+		this.dof = dof;
+		this.rol = rol;
+		this.age = age;
+	}
+
 
 	public Student(Long id, 
 			String name, 
@@ -48,11 +80,15 @@ public class Student {
 
 	}
 
-	public Student(String name, String email, LocalDate dof) {
+	public Student(String name, 
+			String email, 
+			LocalDate dof,
+			Integer rol) {
 		
 		this.name = name;
 		this.email = email;
 		this.dof = dof;
+		this.rol=rol;
 	}
 
 	public Long getId() {
@@ -87,23 +123,35 @@ public class Student {
 		this.dof = dof;
 	}
 
-	public Integer getAge() {
+	/*public Integer getAge() {
 		
 		return Period.between(this.dof, LocalDate.now()).getYears();
 	}
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}*/
+	
+
+	public Integer getRol() {
+		return rol;
 	}
 
+	public void setRol(Integer rol) {
+		this.rol = rol;
+	}
+	
 	@Override
 	public String toString() {
 		return "Student ["
 				+ "id=" + id + 
 				", name='" + name + '\''+
 				", email='" + email +'\''+ 
-				", dof=" + dof + "]";
+				", dof=" + dof + 
+				", rol=" + rol + "]";
 	}
+
+	
 		
 	
 	

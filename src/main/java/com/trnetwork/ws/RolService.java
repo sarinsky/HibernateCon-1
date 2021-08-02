@@ -22,7 +22,7 @@ public class RolService {
 	}
 	
 	public List<Rol> getRols(){
-		return rolRepository.findAll();
+		return (List<Rol>) rolRepository.findAll();
 	}
 	
 	public void addNewRol(Rol rol) {

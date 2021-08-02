@@ -26,7 +26,8 @@ public class StudentService {
 	}
 
 	public List<Student> getStudent() {
-		return  studentRepository.findAll();
+		return  (List<Student>) studentRepository.findAll();
+				//studentRepository.findAll();
 
 	/*THIS IS REAALY AWESOME*/
 	}
@@ -36,6 +37,7 @@ public class StudentService {
 		if (studentOptional.isPresent()) {
 			throw new IllegalStateException("email taken");
 		}
+		System.out.println(student);
 		studentRepository.save(student);
 //		System.out.println(student);
 		
