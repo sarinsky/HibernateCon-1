@@ -3,12 +3,15 @@ package com.trnetwork.model;
 import java.time.LocalDate;
 import java.time.Period;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -23,12 +26,14 @@ public class Docente {
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
 			generator = "docent_sequence")
-	
+	@Column(name = "id_docent")
 	private Long Id;
 	private String name;
 	private String email;
 	private LocalDate dob;
-	
+	//@OneToOne
+	//@JoinColumn(name = "Rol", referencedColumnName = "id")
+	private Integer rol;
 	@Transient
 	private Integer age;
 	
@@ -41,11 +46,13 @@ public class Docente {
 	public Docente(Long id, 
 			String name, 
 			String email, 
-			LocalDate dob) {
+			LocalDate dob,
+			Integer rol) {
 		this.Id = id;
 		this.name = name;
 		this.email = email;
 		this.dob = dob;
+		this.rol=rol;
 
 	}
 
@@ -102,7 +109,8 @@ public class Docente {
 		return "Docente [Id=" + Id + 
 				", name='" + name + '\''+
 				", email='" + email + '\''+
-				", dob=" + dob +  "]";
+				", dob=" + dob +
+				", rol=" + rol + "]";
 	}
 	
 	

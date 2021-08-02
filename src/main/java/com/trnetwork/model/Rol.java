@@ -2,6 +2,7 @@ package com.trnetwork.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Rol {
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
 			generator = "rol_sequence")
-	
+	@Column(name = "id_rol")
 	private Long id;
 	private String name;
 	
