@@ -2,16 +2,9 @@ package com.trnetwork.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Subject")
@@ -27,10 +20,9 @@ public class Subject implements Serializable{
 			generator = "subject_sequence")
 	private Long id;
 	private String name;
-	@OneToMany(cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY,
-			mappedBy ="subject" )
-	private List<ScheduleSubject> scheduleSubjects;
+
+	@ManyToMany
+	Set<Student> students;
 	
 	public Subject() {
 		
