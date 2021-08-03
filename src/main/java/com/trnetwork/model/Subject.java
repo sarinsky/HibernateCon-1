@@ -18,10 +18,11 @@ public class Subject implements Serializable{
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
 			generator = "subject_sequence")
+	@Column(name = "subject_id")
 	private Long id;
 	private String name;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "subjects")
 	Set<Student> students;
 	
 	public Subject() {
