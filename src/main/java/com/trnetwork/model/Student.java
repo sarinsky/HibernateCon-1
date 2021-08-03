@@ -32,7 +32,7 @@ public class Student  implements Serializable{
 	@GeneratedValue(
 			strategy = GenerationType.SEQUENCE,
 			generator = "student_sequence")
-	@Column(name = "id_student")
+	@Column(name = "id")
 	private Long id;
 	/*Is everything that we have need here */
 	@Column(
