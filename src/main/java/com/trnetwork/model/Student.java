@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,10 +55,8 @@ public class Student  implements Serializable{
 	@Transient
 	private Integer age;
 	
-	@OneToMany(cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY,
-			mappedBy = "student")
-	private List<ScheduleSubject> scheduleSubjects;
+	@ManyToMany
+	Set<Subject> subjects;
 	
 	public Student() {
 		
