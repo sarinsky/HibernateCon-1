@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,12 +47,18 @@ public class SubjectService {
 		subjectRepository.deleteById(subjectId);
 	}
 	/* business logic*/
-	public void updateSubject(Long subjectId, String name) {
+	@Transactional
+	public void updateSubject(Long subjectId, String name, String ranking) {
 		Subject subject = subjectRepository.findById(subjectId).orElseThrow(()-> new IllegalStateException(
 				"The subject with id"+subjectId+"doesn't exist"));
 		if (name!=null && name.length()>0 && !Objects.equals(subject.getName(), name)) {
 			subject.setName(name);
 		}
+		if (ranking!=null && ranking.length()>0 && !Objects.equals(subject.getRanking(),ranking)) {
+			subject.setRanking(ranking);;
+		}
+		
+		
 	}
 	
 	

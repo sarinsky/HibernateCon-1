@@ -42,8 +42,9 @@ public class SubjectController {
 	@PutMapping(path= "{subjectId}")
 	public void updateSubject(
 			@PathVariable("subjectId") Long subjectId,
-			@RequestParam(required = false) String name) {
-		subjectService.updateSubject(subjectId, name);
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) String ranking) {
+		subjectService.updateSubject(subjectId, name, ranking);
 	}
 	
 	
